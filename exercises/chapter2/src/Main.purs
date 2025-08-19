@@ -2,7 +2,6 @@ module Main where
 
 import Prelude
 
-import Data.Int (toNumber)
 import Data.Maybe (fromMaybe)
 import Data.String.Utils (repeat)
 import Effect (Effect)
