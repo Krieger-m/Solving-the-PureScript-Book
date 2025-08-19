@@ -9,8 +9,10 @@ You can edit this file as you like.
   , "foldable-traversable"
   , "integers"
   , "lists"
+  , "maybe"
   , "numbers"
   , "prelude"
+  , "stringutils"
   , "test-unit"
   ]
 , packages = ./packages.dhall
