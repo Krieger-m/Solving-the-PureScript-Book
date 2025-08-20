@@ -39,6 +39,19 @@ main :: Effect Unit
 main = do
   (log("Address: \t" <> showAddress(firstAddress) <> "🍝"))
   (log("Entry: \t\t" <> showEntry(firstEntry) <> "📖"))
+  prt
+
+
 
 {--! solving according to https://book.purescript.org/chapter3.html and some own stuff to get better understanding :) --}
+
+
+--------x trying stuff below x--------
+
+onlyTheSecond :: forall  x y. x->y->y
+onlyTheSecond = \a b -> b
   
+prt :: Effect Unit
+prt =do
+  log("\n\treturning only the second of values: " <> onlyTheSecond 2 "test\n")
+
