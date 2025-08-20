@@ -40,5 +40,5 @@ main = do
   (log("Address: \t" <> showAddress(firstAddress) <> "🍝"))
   (log("Entry: \t\t" <> showEntry(firstEntry) <> "📖"))
 
-
+{--! solving according to https://book.purescript.org/chapter3.html and some own stuff to get better understanding :) --}
   
