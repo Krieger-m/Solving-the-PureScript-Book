@@ -3,10 +3,11 @@ module Main
 
 import Prelude
 
-import Data.AddressBook (Entry, showAddress, showEntry)
+import Data.AddressBook (Entry, AddressBook, showAddress, showEntry)
 import Data.List (List(..))
 import Effect (Effect)
 import Effect.Console (log)
+import Test.Main (book)
 
 
 
@@ -30,12 +31,14 @@ insertEntry ::
     -> List{ 
       address   :: { city :: String, state  :: String, street :: String },
       firstName :: String,
-      lastName  :: String}
-insertEntry e book = Cons e book
+      lastName  :: String} 
+insertEntry (e)(book) = Cons (e)(book)
 
 
 main :: Effect Unit
 main = do
   (log("Address: \t" <> showAddress(firstAddress) <> "🍝"))
   (log("Entry: \t\t" <> showEntry(firstEntry) <> "📖"))
+
+
   
