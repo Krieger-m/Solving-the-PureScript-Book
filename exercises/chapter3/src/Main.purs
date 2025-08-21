@@ -3,7 +3,7 @@ module Main
 
 import Prelude
 
-import Data.AddressBook (Entry, AddressBook, showAddress, showEntry)
+import Data.AddressBook (AddressBook, Entry, emptyBook, showAddress, showEntry, insertEntry)
 import Data.List (List(..))
 import Effect (Effect)
 import Effect.Console (log)
@@ -22,23 +22,15 @@ firstEntry ∷ {
 
 firstEntry = { firstName: "John", lastName: "Smith", address: firstAddress }
 
-insertEntry ::
-  Entry
-  -> List{ 
-    address   :: { city :: String, state  :: String, street :: String },
-    firstName :: String,
-    lastName  :: String}
-    -> List{ 
-      address   :: { city :: String, state  :: String, street :: String },
-      firstName :: String,
-      lastName  :: String} 
-insertEntry (e)(book) = Cons (e)(book)
+bookWithInsertedEntry :: AddressBook
+bookWithInsertedEntry = insertEntry firstEntry emptyBook
 
 
 main :: Effect Unit
 main = do
   (log("Address: \t" <> showAddress(firstAddress) <> "🍝"))
   (log("Entry: \t\t" <> showEntry(firstEntry) <> "📖"))
+
   prt
 
 
