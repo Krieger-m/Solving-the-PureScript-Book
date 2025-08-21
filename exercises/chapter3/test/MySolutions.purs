@@ -48,6 +48,9 @@ insertEntry entry book = Cons entry book
 
 
 {--! solving according to https://book.purescript.org/chapter3.html and some own stuff to get better understanding :) --}
+-- Querying the Address Book
+--!-------------------------
+-- -------------------------
 
 
 --------x trying stuff below x--------
