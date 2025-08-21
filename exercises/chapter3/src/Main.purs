@@ -5,17 +5,19 @@ import Prelude
 
 import Effect (Effect)
 import Effect.Console (log)
-import Test.MySolutions (firstAddress, firstEntry, onlyTheSecond, prt, showAddress, showEntry)
+import Test.MySolutions (firstAddress, firstEntry, onlyTheSecond, printStuff, showAddress, showEntry)
 
 
 
 main :: Effect Unit
 main = do
-  (log("Address: \t" <> showAddress(firstAddress) <> "🍝"))
-  (log("Entry: \t\t" <> showEntry(firstEntry) <> "📖"))
-  (log("onlyTheSecond:\t" <> show(onlyTheSecond 214 527)))
-  prt
-
+  (log(
+    "\nAddress: \t" <> showAddress(firstAddress) <> " 🍝" <>
+    "\nEntry: \t\t" <> showEntry(firstEntry) <> " 📖" <>
+    "\nonlyTheSecond:\t" <> show(onlyTheSecond 214 527) <> " 🧮"
+  ))
+  
+  printStuff
 
 
 
