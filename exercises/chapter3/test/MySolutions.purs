@@ -9,8 +9,7 @@ import Data.AddressBook     (Address, AddressBook, Entry, emptyBook, insertEntry
 -- Note to reader: Add your solutions to this file
 
 
-firstAddress ∷ { 
-  city ∷ String , state ∷ String , street ∷ String }
+firstAddress ∷ { city ∷ String , state ∷ String , street ∷ String }
 
 firstAddress = { city: "Faketown", state: "CA", street: "123 Fake St."}
 
