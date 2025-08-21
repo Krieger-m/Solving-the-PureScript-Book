@@ -70,7 +70,6 @@ printStuff = do
     
     let addX_res = (addX (35)(90))
     let add1_res = add1(addX_res)
-    let x = \entry -> entry.firstName
 
     
 
