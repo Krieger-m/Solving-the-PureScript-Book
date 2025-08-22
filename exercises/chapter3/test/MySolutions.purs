@@ -8,6 +8,7 @@ import Data.Maybe (Maybe)
 import Effect (Effect)
 import Effect.Console (log)
 
+
 -- Note to reader: Add your solutions to this file
 
 
@@ -23,6 +24,15 @@ entry1 = { firstName: "John", lastName: "Smith", address: address }
 
 bookWithInsertedEntry :: AddressBook
 bookWithInsertedEntry = insertEntry entry emptyBook
+
+
+john :: Entry
+john =
+  { firstName: "John"
+  , lastName: "Smith"
+  , address:
+      { street: "123 Fake St.", city: "Faketown", state: "CA" }
+  }
 
 
 --?  my own addressbook functions
@@ -70,6 +80,7 @@ onlyTheSecond = \a b -> b
 address = { street: "123 Fake St.", city: "Faketown", state: "CA" }
 entry = { firstName: "John", lastName: "Smith", address: address }
 
+infix 5 insertEntry as ++
 
 printStuff :: Effect Unit
 printStuff = do
@@ -77,14 +88,19 @@ printStuff = do
     let addX_res = (addX (35)(55))
     let add1_res = add1(addX_res)
 
-    -- let book1 = insertEntry john emptyBook
+    let book1 = insertEntry john emptyBook
+    let book2 = john `insertEntry` emptyBook
+
+    let book3 = john `insertEntry` (john `insertEntry` (john `insertEntry` emptyBook))
+
+    let book4 = john ++ (john ++ (john ++emptyBook)) -- infox also possible without parentheses
     
 
     log("\n\n\tmy tryout section :)\n\t--------------------\n")
     log(
         "adding 35 + 55 = " <> show(addX_res) <>"\n"   <>
-        "adding 1 to the result with add1 = " <> show(add1_res) <> "\n" 
-        -- "book1: " <> book1
+        "adding 1 to the result with add1 = " <> show(add1_res) <> "\n" <>
+        "book1: "
         
     )
       
