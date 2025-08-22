@@ -2,11 +2,11 @@ module Test.MySolutions where
 
 import Prelude
 
-import Effect               (Effect)
-import Effect.Console       (log)
-import Data.Maybe           (Maybe)
-import Data.List            (List(Cons), head, filter)
-import Data.AddressBook     (Address, AddressBook, Entry, emptyBook)
+import Data.AddressBook (Address, AddressBook, Entry, emptyBook)
+import Data.List (List(Cons), head, filter)
+import Data.Maybe (Maybe)
+import Effect (Effect)
+import Effect.Console (log)
 
 -- Note to reader: Add your solutions to this file
 
@@ -77,12 +77,14 @@ printStuff = do
     let addX_res = (addX (35)(55))
     let add1_res = add1(addX_res)
 
+    -- let book1 = insertEntry john emptyBook
     
 
     log("\n\n\tmy tryout section :)\n\t--------------------\n")
     log(
         "adding 35 + 55 = " <> show(addX_res) <>"\n"   <>
         "adding 1 to the result with add1 = " <> show(add1_res) <> "\n" 
+        -- "book1: " <> book1
         
     )
       
