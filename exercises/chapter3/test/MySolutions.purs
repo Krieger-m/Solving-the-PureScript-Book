@@ -71,7 +71,7 @@ entry = { firstName: "John", lastName: "Smith", address: address }
 printStuff :: Effect Unit
 printStuff = do
     
-    let addX_res = (addX (35)(90))
+    let addX_res = (addX (35)(55))
     let add1_res = add1(addX_res)
 
     
