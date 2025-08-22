@@ -4,26 +4,25 @@ import Prelude
 
 import Effect               (Effect)
 import Effect.Console       (log)
-import Data.List            (List(Cons))
+import Data.Maybe           (Maybe)
+import Data.List            (List(Cons), head, filter)
 import Data.AddressBook     (Address, AddressBook, Entry, emptyBook)
 
 -- Note to reader: Add your solutions to this file
 
 
-firstAddress ∷ { city ∷ String , state ∷ String , street ∷ String }
+address1 ∷ { city ∷ String , state ∷ String , street ∷ String }
+address1 = { city: "Faketown", state: "CA", street: "123 Fake St."}
 
-firstAddress = { city: "Faketown", state: "CA", street: "123 Fake St."}
 
-
-firstEntry ∷ { 
+entry1 ∷ { 
   address ∷ { city :: String , state :: String , street :: String } , 
   firstName ∷ String , lastName ∷ String }
-
-firstEntry = { firstName: "John", lastName: "Smith", address: firstAddress }
+entry1 = { firstName: "John", lastName: "Smith", address: address }
 
 
 bookWithInsertedEntry :: AddressBook
-bookWithInsertedEntry = insertEntry firstEntry emptyBook
+bookWithInsertedEntry = insertEntry entry emptyBook
 
 
 --?  my own addressbook functions
@@ -41,10 +40,14 @@ showEntry entry =   entry.lastName  <> ", " <>
 
 
 insertEntry ∷ ∀ (a ∷ Type). a → List a → List a
-insertEntry entry book = Cons entry book 
+insertEntry ent book = Cons ent book 
 
 
-
+findEntry :: String -> String -> AddressBook -> Maybe Entry 
+findEntry firstName lastName book = head (filter filterEntry book)
+  where 
+    filterEntry :: Entry -> Boolean
+    filterEntry e = e.firstName == firstName && e.lastName == lastName
 
 
 {--! solving according to https://book.purescript.org/chapter3.html and some own stuff to get better understanding :) --}
@@ -71,7 +74,7 @@ entry = { firstName: "John", lastName: "Smith", address: address }
 printStuff :: Effect Unit
 printStuff = do
     
-    let addX_res = (addX (35)(90))
+    let addX_res = (addX (35)(55))
     let add1_res = add1(addX_res)
 
     
