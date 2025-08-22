@@ -93,7 +93,7 @@ printStuff = do
 
     let book3 = john `insertEntry` (john `insertEntry` (john `insertEntry` emptyBook))
 
-    let book4 = john ++ (john ++ (john ++emptyBook)) -- infox also possible without parentheses
+    let book4 = john ++ (john ++ (john ++emptyBook)) -- infix also possible without parentheses
     
 
     log("\n\n\tmy tryout section :)\n\t--------------------\n")
