@@ -3,6 +3,7 @@ module Test.MySolutions where
 import Prelude
 
 import Data.AddressBook (Address, AddressBook, Entry, emptyBook)
+import Data.Bounded (topRecord)
 import Data.List (List(Cons), head, filter)
 import Data.Maybe (Maybe)
 import Effect (Effect)
@@ -99,8 +100,11 @@ printStuff = do
     log("\n\n\tmy tryout section :)\n\t--------------------\n")
     log(
         "adding 35 + 55 = " <> show(addX_res) <>"\n"   <>
-        "adding 1 to the result with add1 = " <> show(add1_res) <> "\n" <>
-        "book1: "
+        "adding 1 to the result with add1 = " <> show(add1_res) <> "\n-" <>
+        "\n\nbook1: " <> show(book1) <> "\n\n- " <>
+        "\n\nbook2: " <> show(book2) <> "\n\n- " <>
+        "\n\nbook3: " <> show(book3) <> "\n\n- " <>
+        "\n\nbook4: " <> show(book4) <> "\n\n- "
         
     )
       
