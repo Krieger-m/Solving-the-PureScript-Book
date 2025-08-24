@@ -69,8 +69,8 @@ findEntryByStreet s = ((filter filterEntry) >>> head)
 
 
 -- Exercise 4
-isInBook :: String -> AddressBook -> Boolean
-isInBook = --//!/
+-- isInBook :: String -> AddressBook -> Boolean
+-- isInBook = --//!/
 
 {--! solving according to https://book.purescript.org/chapter3.html and some own stuff to get better understanding :) --}
 -- Querying the Address Book
