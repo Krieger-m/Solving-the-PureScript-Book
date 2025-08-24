@@ -2,8 +2,7 @@ module Test.MySolutions where
 
 import Prelude
 
-import Data.AddressBook (Address, AddressBook, Entry, emptyBook)
-import Data.Bounded (topRecord)
+import Data.AddressBook (Address, Entry, AddressBook, emptyBook)
 import Data.List (List(Cons), head, filter)
 import Data.Maybe (Maybe)
 import Effect (Effect)
@@ -13,18 +12,18 @@ import Effect.Console (log)
 -- Note to reader: Add your solutions to this file
 
 
-address1 ∷ { city ∷ String , state ∷ String , street ∷ String }
-address1 = { city: "Faketown", state: "CA", street: "123 Fake St."}
+address ∷ { city ∷ String , state ∷ String , street ∷ String }
+address = { city: "Faketown", state: "CA", street: "123 Fake St."}
 
 
-entry1 ∷ { 
+entry ∷ { 
   address ∷ { city :: String , state :: String , street :: String } , 
   firstName ∷ String , lastName ∷ String }
-entry1 = { firstName: "John", lastName: "Smith", address: address }
+entry = { firstName: "John", lastName: "Smith", address: address' }
 
 
 bookWithInsertedEntry :: AddressBook
-bookWithInsertedEntry = insertEntry entry emptyBook
+bookWithInsertedEntry = insertEntry entry' emptyBook
 
 
 john :: Entry
@@ -55,11 +54,23 @@ insertEntry ent book = Cons ent book
 
 
 findEntry :: String -> String -> AddressBook -> Maybe Entry 
-findEntry firstName lastName book = head (filter filterEntry book)
+findEntry firstName lastName = (head <<< (filter filterEntry))
   where 
     filterEntry :: Entry -> Boolean
     filterEntry e = e.firstName == firstName && e.lastName == lastName
 
+-- Exercise 2 & 3
+findEntryByStreet :: String -> AddressBook -> Maybe Entry
+-- findEntryByStreet s b = head (filter filterEntry) bsp
+findEntryByStreet s = ((filter filterEntry) >>> head)
+  where 
+    filterEntry :: Entry -> Boolean
+    filterEntry e = e.address.street == s
+
+
+-- Exercise 4
+isInBook :: String -> AddressBook -> Boolean
+isInBook = --//!/
 
 {--! solving according to https://book.purescript.org/chapter3.html and some own stuff to get better understanding :) --}
 -- Querying the Address Book
@@ -78,8 +89,8 @@ add1 a = addX a 1
 onlyTheSecond :: forall  x y. x->y->y
 onlyTheSecond = \a b -> b
 
-address = { street: "123 Fake St.", city: "Faketown", state: "CA" }
-entry = { firstName: "John", lastName: "Smith", address: address }
+address' = { street: "123 Fake St.", city: "Faketown", state: "CA" }
+entry' = { firstName: "John", lastName: "Smith", address: address' }
 
 infix 5 insertEntry as ++
 
@@ -105,6 +116,7 @@ printStuff = do
         "\n\nbook2: " <> show(book2) <> "\n\n- " <>
         "\n\nbook3: " <> show(book3) <> "\n\n- " <>
         "\n\nbook4: " <> show(book4) <> "\n\n- "
+        
         
     )
       
