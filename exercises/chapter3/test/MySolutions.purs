@@ -2,8 +2,9 @@ module Test.MySolutions where
 
 import Prelude
 
-import Data.AddressBook (Address, AddressBook, Entry, emptyBook)
-import Data.List (List(Cons), head, filter)
+import Control.Plus (empty)
+import Data.AddressBook (Address, AddressBook, Entry)
+import Data.List (List(Cons), head, filter, null)
 import Data.Maybe (Maybe)
 import Effect (Effect)
 import Effect.Console (log)
@@ -61,32 +62,52 @@ insertEntry ∷ ∀ (a ∷ Type). a → List a → List a
 insertEntry ent book = Cons ent book 
 
 
+-- Querying the Address Book
+--!-------------------------
+-- -------------------------
+
+
 findEntry :: String -> String -> AddressBook -> Maybe Entry 
 findEntry firstName lastName = (head <<< (filter filterEntry))
   where 
     filterEntry :: Entry -> Boolean
     filterEntry e = e.firstName == firstName && e.lastName == lastName
 
--- Exercise 2 & 3
-findEntryByStreet :: String -> AddressBook -> Maybe Entry
--- findEntryByStreet s b = head (filter filterEntry) bsp
-findEntryByStreet s = ((filter filterEntry) >>> head)
+
+findEntryFirstName :: String -> AddressBook -> Maybe Entry 
+findEntryFirstName firstName = (head <<< (filter filterEntry))
   where 
     filterEntry :: Entry -> Boolean
-    filterEntry e = e.address.street == s
+    filterEntry e = e.firstName == firstName
+
+
+emptyBook :: AddressBook
+emptyBook = empty
 
 
 book1 :: AddressBook
 book1 = insertEntry john emptyBook
 
+
+-- Exercise 2 & 3
+findEntryByStreet :: String -> AddressBook -> Maybe Entry
+findEntryByStreet s b = head (filter filterEntry b)
+-- findEntryByStreet s = ((filter filterEntry) >>> head)
+  where 
+    filterEntry :: Entry -> Boolean
+    filterEntry e = e.address.street == s
+
+
 -- Exercise 4
--- isInBook :: String -> AddressBook -> Boolean
--- isInBook = --//!/
+isInBook :: String -> String -> AddressBook -> Boolean
+isInBook fName lName = not null <<< filter filterEntry
+  where 
+    filterEntry :: Entry -> Boolean 
+    filterEntry e' = e'.firstName == fName && e'.lastName == lName
+
+
 
 {--! solving according to https://book.purescript.org/chapter3.html and some own stuff to get better understanding :) --}
--- Querying the Address Book
---!-------------------------
--- -------------------------
 
 
 --------x trying stuff below x--------
