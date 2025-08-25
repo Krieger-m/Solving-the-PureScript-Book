@@ -3,8 +3,8 @@ module Test.MySolutions where
 import Prelude
 
 import Control.Plus (empty)
-import Data.AddressBook (Address, AddressBook, Entry)
-import Data.List (List(Cons), head, filter, null)
+import Data.AddressBook (Address, Entry, AddressBook)
+import Data.List (List(Cons), filter, head, nubByEq, null)
 import Data.Maybe (Maybe)
 import Effect (Effect)
 import Effect.Console (log)
@@ -17,10 +17,10 @@ address ∷ { city ∷ String , state ∷ String , street ∷ String }
 address = { city: "Faketown", state: "CA", street: "123 Fake St."}
 
 
-entry ∷ { 
+entry'' ∷ { 
   address ∷ { city :: String , state :: String , street :: String } , 
   firstName ∷ String , lastName ∷ String }
-entry = { firstName: "John", lastName: "Smith", address: address' }
+entry'' = { firstName: "John", lastName: "Smith", address: address' }
 
 
 bookWithInsertedEntry :: AddressBook
@@ -100,10 +100,21 @@ findEntryByStreet s b = head (filter filterEntry b)
 
 -- Exercise 4
 isInBook :: String -> String -> AddressBook -> Boolean
-isInBook fName lName = not null <<< filter filterEntry
+isInBook fName lName = (not null <<< (filter filterEntry ))
   where 
     filterEntry :: Entry -> Boolean 
     filterEntry e' = e'.firstName == fName && e'.lastName == lName
+
+
+-- Exercise 5 
+removeDuplicates :: AddressBook -> AddressBook
+-- Equivalent: removeDuplicates book = nubByEq entriesAreDuplicated book
+removeDuplicates = nubByEq entriesAreDuplicated
+  where
+  entriesAreDuplicated :: Entry -> Entry -> Boolean
+  entriesAreDuplicated e1 e2 =
+    e1.firstName == e2.firstName &&
+    e1.lastName  == e2.lastName
 
 
 
@@ -119,7 +130,7 @@ add1 :: Int -> Int
 add1 a = addX a 1
 
 onlyTheSecond :: forall  x y. x->y->y
-onlyTheSecond = \a b -> b
+onlyTheSecond = \_ b -> b
 
 address' :: Address 
 address' = { street: "123 Fake St.", city: "Faketown", state: "CA" }
