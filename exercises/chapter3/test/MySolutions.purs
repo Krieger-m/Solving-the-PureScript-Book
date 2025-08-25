@@ -2,7 +2,7 @@ module Test.MySolutions where
 
 import Prelude
 
-import Data.AddressBook (Address, Entry, AddressBook, emptyBook)
+import Data.AddressBook (Address, AddressBook, Entry, emptyBook)
 import Data.List (List(Cons), head, filter)
 import Data.Maybe (Maybe)
 import Effect (Effect)
@@ -34,6 +34,14 @@ john =
       { street: "123 Fake St.", city: "Faketown", state: "CA" }
   }
 
+
+ned :: Entry
+ned =
+  { firstName: "Ned"
+  , lastName: "Flanders"
+  , address:
+      { street: "740 Evergreen Terrace", city: "Springfield", state: "USA" }
+  }
 
 --?  my own addressbook functions
 
@@ -68,6 +76,9 @@ findEntryByStreet s = ((filter filterEntry) >>> head)
     filterEntry e = e.address.street == s
 
 
+book1 :: AddressBook
+book1 = insertEntry john emptyBook
+
 -- Exercise 4
 -- isInBook :: String -> AddressBook -> Boolean
 -- isInBook = --//!/
@@ -89,8 +100,12 @@ add1 a = addX a 1
 onlyTheSecond :: forall  x y. x->y->y
 onlyTheSecond = \a b -> b
 
+address' :: Address 
 address' = { street: "123 Fake St.", city: "Faketown", state: "CA" }
+
+entry':: Entry
 entry' = { firstName: "John", lastName: "Smith", address: address' }
+
 
 infix 5 insertEntry as ++
 
@@ -100,7 +115,6 @@ printStuff = do
     let addX_res = (addX (35)(55))
     let add1_res = add1(addX_res)
 
-    let book1 = insertEntry john emptyBook
     let book2 = john `insertEntry` emptyBook
 
     let book3 = john `insertEntry` (john `insertEntry` (john `insertEntry` emptyBook))
