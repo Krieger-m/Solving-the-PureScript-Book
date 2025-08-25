@@ -1,10 +1,11 @@
 module Test.Main where
 
 import Prelude
-import Test.MySolutions
-import Data.AddressBook (AddressBook, Entry, emptyBook, findEntry, insertEntry)
+
+import Data.AddressBook (AddressBook, Entry)
 import Data.Maybe (Maybe(..))
 import Effect (Effect)
+import Test.MySolutions (emptyBook, findEntry, findEntryByStreet, insertEntry, isInBook, removeDuplicates)
 import Test.Unit (TestSuite, suite, test)
 import Test.Unit.Assert as Assert
 import Test.Unit.Main (runTest)
